@@ -15,6 +15,7 @@ import {
 } from "@dnd-kit/sortable";
 import BlockItem from "./BlockItem";
 import ReviewFlags from "./ReviewFlags";
+import SourceSearchModal from "./SourceSearchModal";
 
 export default function BlockEditorView({
   initialBlocks,
@@ -29,6 +30,7 @@ export default function BlockEditorView({
   const [selectedBlockId, setSelectedBlockId] = useState(
     initialBlocks[0]?.id || null
   );
+  const [sourceModal, setSourceModal] = useState(null); // { flagIndex, claimText }
 
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
@@ -94,9 +96,34 @@ export default function BlockEditorView({
     }));
   };
 
-  const searchSources = () => {
-    // Placeholder for source search
-    alert("Source search coming soon (requires Exa or web search integration)");
+  const searchSources = (flagIndex) => {
+    if (!selectedBlockId) return;
+    const flag = (flagsByBlock[selectedBlockId] || [])[flagIndex];
+    if (!flag || flag.type !== "needs_source") return;
+    setSourceModal({ flagIndex, claimText: flag.claim_text || flag.detail });
+  };
+
+  const handleAcceptSource = (source) => {
+    if (!sourceModal || !selectedBlockId) return;
+    const { flagIndex, claimText } = sourceModal;
+
+    // Replace claim text with a markdown hyperlink in the block's text_content
+    setBlocks((prev) =>
+      prev.map((b) => {
+        if (b.id !== selectedBlockId) return b;
+        const linked = `[${claimText}](${source.url})`;
+        const updated = b.text_content.includes(claimText)
+          ? b.text_content.replace(claimText, linked)
+          : b.text_content + `\n\n[Source: ${source.title}](${source.url})`;
+        return { ...b, text_content: updated };
+      })
+    );
+
+    // Dismiss the flag
+    setFlagsByBlock((prev) => ({
+      ...prev,
+      [selectedBlockId]: prev[selectedBlockId].filter((_, i) => i !== flagIndex),
+    }));
   };
 
   const selectedFlags = selectedBlockId
@@ -181,6 +208,16 @@ export default function BlockEditorView({
           </p>
         )}
       </div>
+
+      {/* Source search modal */}
+      <SourceSearchModal
+        key={sourceModal?.claimText || "closed"}
+        isOpen={!!sourceModal}
+        claimText={sourceModal?.claimText || ""}
+        articleContext={topicSummary}
+        onAccept={handleAcceptSource}
+        onClose={() => setSourceModal(null)}
+      />
 
       {/* Bottom action bar */}
       <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">

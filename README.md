@@ -2,13 +2,45 @@
 
 A decentralized platform for independent journalism on a mission to rebuild trust and reverse polarization in media. 
 
-## Hackathon Scope
-
-The demo built during this hackathon is to 
-
 ## Executive Summary
 
-We are building two AI-powered UI features for Aemula, a decentralized independent journalism platform. The two features — **Agentic Editorial Review** and **Ideological Vector Search** — are designed to showcase novel interface patterns where Claude drives the UI logic itself, not just the content. The editorial review transforms the writing-to-publishing workflow into a structural block-editing paradigm orchestrated by AI. The vector search visualizes ideological proximity in 3D space and morphs between contextual and ideological ranking views.
+For this hackathon, we are building two AI-powered UI features to serve the two core user groups of Aemula, journalists and readers. The two features — **Agentic Editorial Review** and **Ideological Vector Search** — are designed to showcase novel interface patterns where Claude and Redis Vector Search drive the UI logic itself, not just the content. The editorial review transforms the writing-to-publishing workflow into a structural block-editing paradigm orchestrated by AI. The vector search visualizes ideological proximity in 3D space and morphs between contextual and ideological ranking views.
+
+## Demo App
+[demo.aemula.com](https://demo.aemula.com)
+
+## What was completed in this hackathon
+
+**Prior to Hackathon**
+
+We took a snapshot the user and article nodes from our production graph database, created node embeddings based on their context and their ideological relationships (generated through user interactions with articles on the platform), and loaded the vector indexes to Redis Cloud.
+
+We also created our company logo prior to the hackathon.
+
+**In Hackathon**
+
+We built out the full demo app seen in the link above. This includes
+
+**Publish**
+
+This is the core Agentic Editorial Review feature:
+
+- Draft Editor
+	- Notion-style text editor using milkdown/crepe to allow journalists to draft an article
+	- We also include stored drafts to use for demo purposes
+- Agentic Editorial Review
+	- Utilizes a multi-model review process to mimic the types of editorial reviews conducted in professional newsrooms
+	- Sonnet - Deconstructs the article into its component "blocks"
+		- Blocks represent the core ideas and claims that construct the overall structure of the article
+
+## Why
+
+- Agentic Editorial Review
+	- Journalists don't want to use AI to draft their work
+		- dude who just got roasted for using AI recently
+	- Journalists do need to leverage AI to more productively conduct reporting
+		- More from an editorial/collaborative perspective
+		- structure/refinement/sourcing/citations
 
 ## Project Spec
 
@@ -39,16 +71,6 @@ We are building two AI-powered UI features for Aemula, a decentralized independe
 - Store articles locally (or in simple Supabase depending on size - think its small)
 - Nextjs/Tailwind frontend, simple Vercel deployment
 - Nextjs server-side API routes to Claude/Redis
-
-
-## Why
-
-- Editing tool
-	- Journalists don't want to use AI to draft their work
-		- dude who just got roasted for using AI recently
-	- Journalists do need to leverage AI to more productively conduct reporting
-		- More from an editorial/collaborative perspective
-		- structure/refinement/sourcing/citations
 
 
 ## For the future
