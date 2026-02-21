@@ -3,14 +3,14 @@ import { AemulaLogoIcon } from "@/components/AemulaLogoIcon";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-zinc-800 flex flex-col items-center justify-center gap-4">
-      <AemulaLogoIcon className="h-70 w-70" glow="lg" />
+    <main className="min-h-screen bg-zinc-800 flex flex-col items-center justify-center">
+      <AemulaLogoIcon className="h-60 w-60" glow="lg" />
 
-      <h1 className="font-sans font-extralight text-[10vw] text-stone-100">
+      <h1 className="mt-2 font-sans font-extralight text-[10vw] text-stone-100">
         A E M U L A
       </h1>
 
-      <p className="font-sans text-stone-400 text-base tracking-wide">
+      <p className="font-serif text-stone-300 text-xl">
         News without the media
       </p>
 
