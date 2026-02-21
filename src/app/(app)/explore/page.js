@@ -146,7 +146,7 @@ export default function ExplorePage() {
                   >
                     <div className="relative rounded-lg bg-zinc-800 border border-zinc-700 p-4 hover:border-amber-600/50 transition-colors">
                       {/* Rank badge */}
-                      <span className="absolute -left-[2.85rem] top-4 w-5 h-5 rounded-full bg-amber-500 text-zinc-900 text-xs font-bold flex items-center justify-center">
+                      <span className="absolute -left-9 top-4 w-5 h-5 rounded-full bg-amber-500 text-zinc-900 text-xs font-normal flex items-center justify-center">
                         {i + 1}
                       </span>
 

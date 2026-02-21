@@ -13,7 +13,7 @@ For this hackathon, we are building two AI-powered UI features to serve the two 
 
 **Prior to Hackathon**
 
-We took a snapshot the user and article nodes from our production graph database, created node embeddings based on their context and their ideological relationships (generated through user interactions with articles on the platform), and loaded the vector indexes to Redis Cloud.
+We took a snapshot the user and article nodes from our production graph database, created node embeddings based on their context and their ideological relationships (generated through user interactions with articles on the platform), and loaded the vector indexes to our Redis Cloud database.
 
 We also created our company logo prior to the hackathon.
 
@@ -73,7 +73,7 @@ This is the core Agentic Editorial Review feature:
 - Nextjs server-side API routes to Claude/Redis
 
 
-## For the future
+## Implementation & Future Features
 
 - Feature Pipeline
 	- RAG retrieval geared to tailor responses to individual users

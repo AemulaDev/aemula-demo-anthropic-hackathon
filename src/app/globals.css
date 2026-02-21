@@ -29,6 +29,11 @@ body {
   background-size: 479px 479px;
 }
 
+/* Override react-force-graph-3d nav tip position */
+.scene-nav-info {
+  bottom: 60px !important;
+}
+
 /* Milkdown Crepe dark theme overrides */
 .milkdown {
   --crepe-color-background: transparent;

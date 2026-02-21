@@ -28,17 +28,20 @@ export async function POST(request) {
       .map((b, i) => `--- Block ${i + 1}: ${b.summary} ---\n${b.text_content}`)
       .join("\n\n");
 
-    const message = await client.messages.create({
-      model: "claude-opus-4-6",
-      max_tokens: 8192,
-      system: SYSTEM_PROMPT,
-      messages: [
-        {
-          role: "user",
-          content: `ORIGINAL ARTICLE (for voice reference):\n${originalArticle}\n\nRESTRUCTURED ARTICLE BLOCKS (in final order):\n${blocksText}\n\nPlease produce the polished, cohesive article.`,
-        },
-      ],
-    });
+    const message = await client.messages.create(
+      {
+        model: "claude-opus-4-6",
+        max_tokens: 8192,
+        system: SYSTEM_PROMPT,
+        messages: [
+          {
+            role: "user",
+            content: `ORIGINAL ARTICLE (for voice reference):\n${originalArticle}\n\nRESTRUCTURED ARTICLE BLOCKS (in final order):\n${blocksText}\n\nPlease produce the polished, cohesive article.`,
+          },
+        ],
+      },
+      { maxRetries: 5 }
+    );
 
     const polishedArticle = message.content[0].text;
 

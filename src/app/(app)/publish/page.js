@@ -51,13 +51,22 @@ export default function PublishPage() {
     setState(STATES.LOADING);
 
     const loadingSteps = [
-      { label: "Decomposing article into blocks", status: "active" },
+      { label: "Reading your article", status: "active" },
+      { label: "Decomposing article into blocks", status: "pending" },
       { label: "Reviewing blocks for issues", status: "pending" },
     ];
     setSteps(loadingSteps);
 
+    // Brief pause to simulate "reading"
+    await new Promise((r) => setTimeout(r, 2500));
+    setSteps((prev) => [
+      { ...prev[0], status: "done" },
+      { ...prev[1], status: "active" },
+      { ...prev[2] },
+    ]);
+
     try {
-      // Step 1: Decompose
+      // Step 2: Decompose
       const decomposeRes = await fetch("/api/editorial/decompose", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -74,14 +83,19 @@ export default function PublishPage() {
       setTopicSummary(decomposition.topic_summary || "");
       setKeyArguments(decomposition.key_arguments || []);
 
-      const decomposedBlocks = decomposition.blocks || [];
+      if (!Array.isArray(decomposition.blocks)) {
+        console.error("Unexpected decomposition response:", decomposition);
+        throw new Error("Decomposition returned invalid blocks structure");
+      }
+      const decomposedBlocks = decomposition.blocks;
 
       setSteps((prev) => [
         { ...prev[0], status: "done" },
-        { ...prev[1], status: "active" },
+        { ...prev[1], status: "done" },
+        { ...prev[2], status: "active" },
       ]);
 
-      // Step 2: Review each block in parallel
+      // Step 3: Review each block in parallel
       const reviewResults = await Promise.allSettled(
         decomposedBlocks.map((block, i) =>
           fetch("/api/editorial/review", {
@@ -112,6 +126,7 @@ export default function PublishPage() {
       setSteps((prev) => [
         { ...prev[0], status: "done" },
         { ...prev[1], status: "done" },
+        { ...prev[2], status: "done" },
       ]);
 
       setBlocks(decomposedBlocks);
