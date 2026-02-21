@@ -71,13 +71,24 @@ export default function ExplorePage() {
     setHighlightedNodeIds(null);
   };
 
-  const handleGraphNodeClick = useCallback((node) => {
-    // Find the article in search results, or create a minimal object
-    setSelectedArticle((prev) => {
-      // If we have it in results, use that (has scores + body)
-      return { id: node.id, title: node.label, authorId: node.nodeId };
-    });
-  }, []);
+  const handleGraphNodeClick = useCallback(async (node) => {
+    // Check if we already have full data from search results
+    const fromResults = searchResults.find((r) => r.id === node.id);
+    if (fromResults) {
+      setSelectedArticle(fromResults);
+      return;
+    }
+    // Otherwise fetch from Redis — nodeId is the article id without the "article:" prefix
+    try {
+      const res = await fetch(`/api/articles/${node.nodeId}`);
+      const data = await res.json();
+      if (!data.error) {
+        setSelectedArticle(data);
+      }
+    } catch (err) {
+      console.error("Failed to fetch article:", err);
+    }
+  }, [searchResults]);
 
   const handleResultClick = (result) => {
     setSelectedArticle(result);
@@ -166,6 +177,38 @@ export default function ExplorePage() {
                     </div>
                   </button>
                 ))}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Legend — top left, visible only when graph is showing */}
+      <AnimatePresence>
+        {showGraph && (
+          <motion.div
+            key="legend"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-6 left-6 z-20 px-4 py-3 rounded-lg bg-zinc-800/90 backdrop-blur border border-zinc-700"
+          >
+            <p className="text-xs font-medium text-stone-400 mb-2 uppercase tracking-wide">
+              Perspective Map
+            </p>
+            <div className="flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-cyan-500 shrink-0" />
+                <span className="text-xs text-stone-300">You</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0" />
+                <span className="text-xs text-stone-300">Articles</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="w-2.5 h-2.5 rounded-full bg-stone-200 shrink-0" />
+                <span className="text-xs text-stone-300">Other Users</span>
               </div>
             </div>
           </motion.div>

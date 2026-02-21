@@ -66,6 +66,23 @@ export default function IdeologicalGraph({ highlightedNodes, onNodeClick }) {
     graphRef.current.d3Force("center", null);
   }, [graphData.nodes.length]);
 
+  // Center camera on demo user node after data loads
+  useEffect(() => {
+    if (!graphRef.current || graphData.nodes.length === 0) return;
+    const userNode = graphData.nodes.find((n) => n.id === DEMO_USER_KEY);
+    if (!userNode) return;
+    const { fx = 0, fy = 0, fz = 0 } = userNode;
+    // Slight delay to let ForceGraph3D finish its internal setup
+    const timer = setTimeout(() => {
+      graphRef.current?.cameraPosition(
+        { x: fx + 300, y: fy + 150, z: fz + 300 },
+        { x: fx, y: fy, z: fz },
+        1000
+      );
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [graphData.nodes]);
+
   const getNodeColor = useCallback(
     (node) => {
       const isDemoUser = node.id === DEMO_USER_KEY;

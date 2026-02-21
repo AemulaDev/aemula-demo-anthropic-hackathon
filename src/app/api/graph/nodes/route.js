@@ -14,7 +14,7 @@ async function getRedis() {
   return redisClient;
 }
 
-const POSITION_MULTIPLIER = 3;
+const POSITION_MULTIPLIER = 6;
 
 export async function GET() {
   try {

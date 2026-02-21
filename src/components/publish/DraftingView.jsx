@@ -22,6 +22,7 @@ export default function DraftingView({ onBeginReview }) {
   }, []);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/immutability
     autoResize(titleRef.current);
     autoResize(subtitleRef.current);
   }, [title, subtitle]);
