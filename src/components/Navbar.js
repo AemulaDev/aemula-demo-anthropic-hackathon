@@ -21,8 +21,8 @@ export default function Navbar() {
           href="/publish"
           className={`px-4 py-2 rounded-md font-sans text-md font-light transition-colors ${
             pathname === "/publish"
-              ? "bg-zinc-700 text-stone-100"
-              : "text-stone-400 hover:text-stone-100 hover:bg-zinc-700"
+              ? "border border-stone-100 rounded-md text-stone-100"
+              : "text-stone-400 border border-zinc-900 hover:text-stone-100 hover:bg-zinc-700 hover:border-zinc-700"
           }`}
         >
           Publish
@@ -32,7 +32,7 @@ export default function Navbar() {
           className={`px-4 py-2 rounded-md font-sans text-md font-light transition-colors ${
             pathname === "/explore"
               ? "border border-stone-100 rounded-md text-stone-100"
-              : "text-stone-400 hover:text-stone-100 hover:bg-zinc-700"
+              : "text-stone-400 border border-zinc-900 hover:text-stone-100 hover:bg-zinc-700 hover:border-zinc-700"
           }`}
         >
           Explore

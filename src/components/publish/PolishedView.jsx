@@ -44,7 +44,7 @@ export default function PolishedView({
       </div>
 
       {/* Title */}
-      <div className="px-8 max-w-3xl mx-auto w-full">
+      <div className="px-8 max-w-5xl mx-auto w-full">
         <textarea
           ref={titleRef}
           value={title}
@@ -70,18 +70,20 @@ export default function PolishedView({
       </div>
 
       {/* Divider */}
-      <div className="px-8 max-w-3xl mx-auto w-full">
+      <div className="px-8 max-w-5xl mx-auto w-full">
         <div className="border-b border-stone-700 my-4" />
       </div>
 
       {/* Editor */}
       <div className="px-8">
-        <div className="max-w-3xl mx-auto w-full">
-          <MilkdownEditor
-            defaultValue={polishedMarkdown}
-            onReady={handleReady}
-            className="min-h-[400px]"
-          />
+        <div className="max-w-5xl mx-auto w-full">
+          <div className="mx-8">
+            <MilkdownEditor
+              defaultValue={polishedMarkdown}
+              onReady={handleReady}
+              className="min-h-[400px]"
+            />
+          </div>
         </div>
       </div>
 
