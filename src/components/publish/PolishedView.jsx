@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import MilkdownEditor from "./MilkdownEditor";
 
 export default function PolishedView({
@@ -12,6 +12,8 @@ export default function PolishedView({
   const [title, setTitle] = useState(initialTitle || "");
   const [subtitle, setSubtitle] = useState(initialSubtitle || "");
   const crepeRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
 
   const handleReady = useCallback((crepe) => {
     crepeRef.current = crepe;
@@ -23,22 +25,28 @@ export default function PolishedView({
     el.style.height = el.scrollHeight + "px";
   };
 
+  useEffect(() => {
+    autoResize(titleRef.current);
+    autoResize(subtitleRef.current);
+  }, []);
+
   const handlePublish = () => {
     alert("Published! (Demo)");
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)]">
+    <div className="flex flex-col pb-20">
       {/* Header */}
-      <div className="px-8 py-4 flex-shrink-0">
+      <div className="px-8 py-4">
         <span className="inline-block font-sans text-xs uppercase tracking-wider text-cyan-500 mb-4">
           Polished Article
         </span>
       </div>
 
       {/* Title */}
-      <div className="px-8 max-w-3xl mx-auto w-full flex-shrink-0">
+      <div className="px-8 max-w-3xl mx-auto w-full">
         <textarea
+          ref={titleRef}
           value={title}
           onChange={(e) => {
             setTitle(e.target.value);
@@ -46,9 +54,10 @@ export default function PolishedView({
           }}
           placeholder="Article title"
           rows={1}
-          className="w-full font-serif text-4xl font-bold text-stone-100 bg-transparent border-none outline-none resize-none placeholder:text-stone-600 overflow-hidden"
+          className="w-full font-serif text-4xl font-light text-stone-100 bg-transparent border-none outline-none resize-none placeholder:text-stone-100/50 overflow-hidden"
         />
         <textarea
+          ref={subtitleRef}
           value={subtitle}
           onChange={(e) => {
             setSubtitle(e.target.value);
@@ -56,17 +65,17 @@ export default function PolishedView({
           }}
           placeholder="Subtitle"
           rows={1}
-          className="w-full font-serif text-xl text-stone-400 bg-transparent border-none outline-none resize-none placeholder:text-stone-600 mt-2 overflow-hidden"
+          className="w-full font-serif font-light text-2xl text-stone-100/70 bg-transparent border-none outline-none resize-none placeholder:text-stone-100/50 mt-2 overflow-hidden"
         />
       </div>
 
       {/* Divider */}
-      <div className="px-8 max-w-3xl mx-auto w-full flex-shrink-0">
+      <div className="px-8 max-w-3xl mx-auto w-full">
         <div className="border-b border-stone-700 my-4" />
       </div>
 
       {/* Editor */}
-      <div className="flex-1 overflow-y-auto px-8">
+      <div className="px-8">
         <div className="max-w-3xl mx-auto w-full">
           <MilkdownEditor
             defaultValue={polishedMarkdown}

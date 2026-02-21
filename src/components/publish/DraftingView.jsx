@@ -57,9 +57,9 @@ export default function DraftingView({ onBeginReview }) {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-64px)]">
+    <div className="flex flex-col pb-20">
       {/* Top bar */}
-      <div className="flex items-center justify-between px-8 py-4 flex-shrink-0">
+      <div className="flex items-center justify-between px-8 py-4">
         <div />
         <div className="relative">
           <button
@@ -90,7 +90,7 @@ export default function DraftingView({ onBeginReview }) {
       </div>
 
       {/* Title */}
-      <div className="px-8 max-w-3xl mx-auto w-full flex-shrink-0">
+      <div className="px-8 max-w-5xl mx-auto w-full">
         <textarea
           ref={titleRef}
           value={title}
@@ -100,7 +100,7 @@ export default function DraftingView({ onBeginReview }) {
           }}
           placeholder="Article title"
           rows={1}
-          className="w-full font-serif text-4xl font-bold text-stone-100 bg-transparent border-none outline-none resize-none placeholder:text-stone-600 overflow-hidden"
+          className="w-full font-serif text-4xl font-light text-stone-100 bg-transparent border-none outline-none resize-none placeholder:text-stone-100/50 overflow-hidden"
         />
         <textarea
           ref={subtitleRef}
@@ -111,24 +111,26 @@ export default function DraftingView({ onBeginReview }) {
           }}
           placeholder="Subtitle"
           rows={1}
-          className="w-full font-serif text-xl text-stone-400 bg-transparent border-none outline-none resize-none placeholder:text-stone-600 mt-2 overflow-hidden"
+          className="w-full font-serif font-light text-2xl text-stone-100/70 bg-transparent border-none outline-none resize-none placeholder:text-stone-100/50 mt-2 overflow-hidden"
         />
       </div>
 
       {/* Divider */}
-      <div className="px-8 max-w-3xl mx-auto w-full flex-shrink-0">
+      <div className="px-8 mt-2 max-w-5xl mx-auto w-full">
         <div className="border-b border-stone-700 my-4" />
       </div>
 
       {/* Editor */}
-      <div className="flex-1 overflow-y-auto px-8">
-        <div className="max-w-3xl mx-auto w-full">
-          <MilkdownEditor
-            key={editorKey}
-            defaultValue={defaultBody}
-            onReady={handleReady}
-            className="min-h-[400px]"
+      <div className="px-8 mt-2">
+        <div className="max-w-5xl mx-auto w-full">
+          <div className="mx-8">
+            <MilkdownEditor
+              key={editorKey}
+              defaultValue={defaultBody}
+              onReady={handleReady}
+              className="min-h-100"
           />
+          </div>
         </div>
       </div>
 

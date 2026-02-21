@@ -8,10 +8,10 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-zinc-700">
+    <nav className="w-full bg-zinc-900 flex items-center justify-between px-6 py-4 border-b border-zinc-800">
       <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
         <AemulaLogoIcon className="h-8 w-8" />
-        <span className="font-sans font-light text-2xl text-stone-100">
+        <span className="font-sans ml-1 font-extralight text-3xl text-stone-100">
           A E M U L A
         </span>
       </Link>

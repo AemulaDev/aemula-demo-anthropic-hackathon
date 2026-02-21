@@ -23,7 +23,7 @@ export default function MilkdownEditor({ defaultValue = "", onReady, className =
           [Crepe.Feature.Table]: false,
           [Crepe.Feature.BlockEdit]: false,
           [Crepe.Feature.Placeholder]: {
-            text: "Begin writing your article...",
+            text: "Write, press '/' for commands...",
           },
         },
       });

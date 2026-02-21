@@ -89,7 +89,7 @@ export default function IdeologicalGraph() {
           nodeLabel={(node) => node.label}
           nodeRelSize={3}
           linkColor={() => "rgba(255,255,255,0.05)"}
-          backgroundColor="#0c0a09"
+          backgroundColor="#27272a"
           width={dimensions.width}
           height={dimensions.height}
         />

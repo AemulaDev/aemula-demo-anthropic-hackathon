@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@milkdown/crepe/theme/common/style.css";
 @import "@milkdown/crepe/theme/frame-dark.css";
 
 @theme inline {
@@ -30,7 +31,8 @@ body {
 
 /* Milkdown Crepe dark theme overrides */
 .milkdown {
-  --crepe-color-background: #27272a;
+  --crepe-color-background: transparent;
+  --crepe-color-on-background: #f5f5f4;
   --crepe-color-surface: #3f3f46;
   --crepe-color-on-surface: #f5f5f4;
   --crepe-color-primary: #06b6d4;
@@ -42,13 +44,19 @@ body {
   --crepe-color-solid: #f5f5f4;
   --crepe-font-family: var(--font-serif), Georgia, serif;
   --crepe-font-code: ui-monospace, SFMono-Regular, monospace;
+  background: transparent;
+}
+
+.milkdown .crepe-placeholder::before {
+  color: rgba(245, 245, 244, 0.5);
 }
 
 .milkdown .editor {
   font-family: var(--font-serif), Georgia, serif;
   font-size: 1.125rem;
   line-height: 1.75;
-  color: #e7e5e4;
+  color: #f5f5f4;
+  background: transparent;
   padding: 0;
 }
 
