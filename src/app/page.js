@@ -19,20 +19,20 @@ export default function Home() {
         News without the media
       </p>
 
-      <div className="flex gap-4 mt-4">
+      <div className="flex gap-4 mt-6">
         <Link
           href="/publish"
-          className="px-6 py-3 border flex flex-row border-stone-100 rounded-md font-sans font-medium text-sm text-stone-100 hover:text-stone-300 transition-colors"
+          className="px-6 py-3 border flex flex-row items-center border-stone-100 rounded-md font-sans shadow-md shadow-stone-700 font-medium text-sm text-stone-100 hover:text-white hover:border-white hover:shadow-lg transition-colors"
         >
           <CiTextAlignLeft />
-          <div>Publish</div>
+          <div className="ml-1">Publish</div>
         </Link>
         <Link
           href="/explore"
-          className="px-6 py-3 flex flex-row border border-stone-100 rounded-md font-sans font-medium text-sm text-stone-100 hover:text-stone-300 transition-colors"
+          className="px-6 py-3 flex flex-row items-center border border-stone-100 rounded-md font-sans shadow-md shadow-stone-700 font-medium text-sm text-stone-100 hover:text-white hover:border-white hover:shadow-lg  transition-colors"
         >
           <CiCompass1 />
-          <div>Explore</div>
+          <div className="ml-1">Explore</div>
         </Link>
       </div>
     </main>

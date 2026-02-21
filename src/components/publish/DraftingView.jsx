@@ -21,6 +21,11 @@ export default function DraftingView({ onBeginReview }) {
       .catch(() => {});
   }, []);
 
+  useEffect(() => {
+    autoResize(titleRef.current);
+    autoResize(subtitleRef.current);
+  }, [title, subtitle]);
+
   const handleReady = useCallback((crepe) => {
     crepeRef.current = crepe;
   }, []);
@@ -40,12 +45,7 @@ export default function DraftingView({ onBeginReview }) {
       setSubtitle(data.subtitle || "");
       setDefaultBody(data.body || "");
       setEditorKey((k) => k + 1);
-      // Trigger auto-resize after state update
-      setTimeout(() => {
-        autoResize(titleRef.current);
-        autoResize(subtitleRef.current);
-      }, 0);
-    } catch (err) {
+      } catch (err) {
       console.error("Failed to load draft:", err);
     }
   };

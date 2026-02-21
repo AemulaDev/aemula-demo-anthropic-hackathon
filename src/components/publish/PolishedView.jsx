@@ -28,7 +28,7 @@ export default function PolishedView({
   useEffect(() => {
     autoResize(titleRef.current);
     autoResize(subtitleRef.current);
-  }, []);
+  }, [title, subtitle]);
 
   const handlePublish = () => {
     alert("Published! (Demo)");
