@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@milkdown/crepe/theme/frame-dark.css";
 
 @theme inline {
   --font-sans: var(--font-sans);
@@ -9,4 +10,66 @@ body {
   background-color: #27272a; /* zinc-800 */
   color: #f5f5f4; /* stone-100 */
   font-family: var(--font-sans), sans-serif;
+}
+
+.grain-overlay {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnN2Z2pzPSJodHRwOi8vc3ZnanMuZGV2L3N2Z2pzIiB2aWV3Qm94PSIwIDAgNzAwIDcwMCIgd2lkdGg9IjcwMCIgaGVpZ2h0PSI3MDAiIG9wYWNpdHk9IjEiPjxkZWZzPjxmaWx0ZXIgaWQ9Im5ubm9pc2UtZmlsdGVyIiB4PSItMjAlIiB5PSItMjAlIiB3aWR0aD0iMTQwJSIgaGVpZ2h0PSIxNDAlIiBmaWx0ZXJVbml0cz0ib2JqZWN0Qm91bmRpbmdCb3giIHByaW1pdGl2ZVVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgY29sb3ItaW50ZXJwb2xhdGlvbi1maWx0ZXJzPSJsaW5lYXJSR0IiPgoJPGZlVHVyYnVsZW5jZSB0eXBlPSJ0dXJidWxlbmNlIiBiYXNlRnJlcXVlbmN5PSIwLjA1OCIgbnVtT2N0YXZlcz0iNCIgc2VlZD0iMTUiIHN0aXRjaFRpbGVzPSJzdGl0Y2giIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgcmVzdWx0PSJ0dXJidWxlbmNlIj48L2ZlVHVyYnVsZW5jZT4KCTxmZVNwZWN1bGFyTGlnaHRpbmcgc3VyZmFjZVNjYWxlPSIxMCIgc3BlY3VsYXJDb25zdGFudD0iMC43IiBzcGVjdWxhckV4cG9uZW50PSIyMCIgbGlnaHRpbmctY29sb3I9IiMjNTI1MjUyIiB4PSIwJSIgeT0iMCUiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGluPSJ0dXJidWxlbmNlIiByZXN1bHQ9InNwZWN1bGFyTGlnaHRpbmciPgogICAgCQk8ZmVEaXN0YW50TGlnaHQgYXppbXV0aD0iMyIgZWxldmF0aW9uPSI0NCI+PC9mZURpc3RhbnRMaWdodD4KICAJPC9mZVNwZWN1bGFyTGlnaHRpbmc+CiAgCjwvZmlsdGVyPjwvZGVmcz48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD48cmVjdCB3aWR0aD0iNzAwIiBoZWlnaHQ9IjcwMCIgZmlsbD0iIyM1MjUyNTIiIGZpbHRlcj0idXJsKCNubm5vaXNlLWZpbHRlcikiPjwvcmVjdD48L3N2Zz4=");
+  opacity: 0.05;
+  background-size: 479px 479px;
+}
+
+/* Milkdown Crepe dark theme overrides */
+.milkdown {
+  --crepe-color-background: #27272a;
+  --crepe-color-surface: #3f3f46;
+  --crepe-color-on-surface: #f5f5f4;
+  --crepe-color-primary: #06b6d4;
+  --crepe-color-on-primary: #ffffff;
+  --crepe-color-secondary: #52525b;
+  --crepe-color-on-secondary: #d4d4d8;
+  --crepe-color-outline: #52525b;
+  --crepe-color-inline-code: #06b6d4;
+  --crepe-color-solid: #f5f5f4;
+  --crepe-font-family: var(--font-serif), Georgia, serif;
+  --crepe-font-code: ui-monospace, SFMono-Regular, monospace;
+}
+
+.milkdown .editor {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: #e7e5e4;
+  padding: 0;
+}
+
+.milkdown .editor p {
+  margin-bottom: 1rem;
+}
+
+.milkdown .editor h1,
+.milkdown .editor h2,
+.milkdown .editor h3 {
+  font-family: var(--font-serif), Georgia, serif;
+  color: #f5f5f4;
+}
+
+.milkdown .editor blockquote {
+  border-left: 3px solid #06b6d4;
+  padding-left: 1rem;
+  color: #a8a29e;
+}
+
+.milkdown .editor a {
+  color: #06b6d4;
+  text-decoration: underline;
 }

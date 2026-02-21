@@ -6,7 +6,7 @@ export function AemulaLogoIcon({ className, glow = 'sm', variant = 'dark', ...pr
     const glowClass = isDark
         ? glow === 'lg'
             ? "[filter:drop-shadow(0_0_3px_rgba(245,245,244,0.4))_drop-shadow(0_0_12px_rgba(245,245,244,0.1))]"
-            : "[filter:drop-shadow(0_0_2px_rgba(245,245,244,0.5))_drop-shadow(0_0_6px_rgba(245,245,244,0.1))]"
+            : "[filter:drop-shadow(0_0_2px_rgba(245,245,244,0.2))_drop-shadow(0_0_6px_rgba(245,245,244,0.1))]"
         : glow === 'lg'
             ? "[filter:drop-shadow(0_0_2px_rgba(39,39,42,0.4))_drop-shadow(0_0_5px_rgba(39,39,42,0.2))]"
             : "[filter:drop-shadow(0_0_1px_rgba(39,39,42,0.2))_drop-shadow(0_0_5px_rgba(39,39,42,0.1))]"

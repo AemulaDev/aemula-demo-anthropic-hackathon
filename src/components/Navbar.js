@@ -11,8 +11,8 @@ export default function Navbar() {
     <nav className="w-full flex items-center justify-between px-6 py-4 border-b border-zinc-700">
       <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
         <AemulaLogoIcon className="h-8 w-8" />
-        <span className="font-sans font-semibold text-lg tracking-wide text-stone-100">
-          Aemula
+        <span className="font-sans font-light text-2xl text-stone-100">
+          A E M U L A
         </span>
       </Link>
 
