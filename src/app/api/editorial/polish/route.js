@@ -28,9 +28,10 @@ export async function POST(request) {
       .map((b, i) => `--- Block ${i + 1}: ${b.summary} ---\n${b.text_content}`)
       .join("\n\n");
 
+    // using sonnet because opus was running into overload errors
     const message = await client.messages.create(
       {
-        model: "claude-opus-4-6",
+        model: "claude-sonnet-4-6",
         max_tokens: 8192,
         system: SYSTEM_PROMPT,
         messages: [
