@@ -11,22 +11,40 @@ Rules:
 - Each block should be independently understandable when read with its summary
 - Blocks should follow the article's natural flow
 - A typical article has 5-12 blocks
-- Include the exact text content for each block
+- Include the exact text content for each block`;
 
-Return valid JSON matching this schema:
-{
-  "topic_summary": "One-sentence summary of the article's central topic",
-  "key_arguments": ["Main argument 1", "Main argument 2", ...],
-  "blocks": [
-    {
-      "id": "block_1",
-      "summary": "2-3 sentence semantic summary of this block's idea",
-      "text_content": "Exact text of this block from the article"
-    }
-  ]
-}
-
-Return ONLY the JSON object, no markdown fences or extra text.`;
+const DECOMPOSE_TOOL = {
+  name: "decompose_article",
+  description: "Decompose an article into atomic building blocks with a topic summary and key arguments.",
+  input_schema: {
+    type: "object",
+    properties: {
+      topic_summary: {
+        type: "string",
+        description: "A brief summary of the article's central topic in a few words",
+      },
+      key_arguments: {
+        type: "array",
+        items: { type: "string" },
+        description: "Brief summaries of the main arguments made in the article in a few words",
+      },
+      blocks: {
+        type: "array",
+        items: {
+          type: "object",
+          properties: {
+            id: { type: "string", description: "Unique block identifier, e.g. block_1" },
+            summary: { type: "string", description: "Brief semantic summary of this block's idea in a few words" },
+            text_content: { type: "string", description: "Exact text of this block from the article" },
+          },
+          required: ["id", "summary", "text_content"],
+        },
+        description: "The article decomposed into sequential building blocks",
+      },
+    },
+    required: ["topic_summary", "key_arguments", "blocks"],
+  },
+};
 
 export async function POST(request) {
   try {
@@ -38,8 +56,10 @@ export async function POST(request) {
 
     const message = await client.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 8192,
+      max_tokens: 16000,
       system: SYSTEM_PROMPT,
+      tools: [DECOMPOSE_TOOL],
+      tool_choice: { type: "tool", name: "decompose_article" },
       messages: [
         {
           role: "user",
@@ -48,12 +68,12 @@ export async function POST(request) {
       ],
     });
 
-    const text = message.content[0].text;
-    // Strip markdown fences if present
-    const cleaned = text.replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "");
-    const result = JSON.parse(cleaned);
+    const toolUse = message.content.find((block) => block.type === "tool_use");
+    if (!toolUse) {
+      throw new Error("No tool use block in response");
+    }
 
-    return NextResponse.json(result);
+    return NextResponse.json(toolUse.input);
   } catch (err) {
     console.error("Decompose error:", err);
     return NextResponse.json({ error: err.message }, { status: 500 });

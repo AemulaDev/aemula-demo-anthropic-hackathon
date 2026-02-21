@@ -34,7 +34,7 @@ Return valid JSON:
   "flags": [
     {
       "type": "grammar|needs_source|counter_argument|redundant|reorder",
-      "detail": "Explanation for the author",
+      "detail": "Brief explanation for the author",
       "correction": "For grammar only: the corrected text",
       "claim_text": "For needs_source only: the specific claim",
       "topic": "For counter_argument only: the opposing viewpoint topic",

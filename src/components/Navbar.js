@@ -16,10 +16,10 @@ export default function Navbar() {
         </span>
       </Link>
 
-      <div className="flex items-center gap-1">
+      <div className="flex items-center gap-2">
         <Link
           href="/publish"
-          className={`px-4 py-2 rounded-md font-sans text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-md font-sans text-md font-light transition-colors ${
             pathname === "/publish"
               ? "bg-zinc-700 text-stone-100"
               : "text-stone-400 hover:text-stone-100 hover:bg-zinc-700"
@@ -29,9 +29,9 @@ export default function Navbar() {
         </Link>
         <Link
           href="/explore"
-          className={`px-4 py-2 rounded-md font-sans text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-md font-sans text-md font-light transition-colors ${
             pathname === "/explore"
-              ? "bg-zinc-700 text-stone-100"
+              ? "border border-stone-100 rounded-md text-stone-100"
               : "text-stone-400 hover:text-stone-100 hover:bg-zinc-700"
           }`}
         >

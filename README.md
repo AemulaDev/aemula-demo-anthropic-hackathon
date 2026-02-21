@@ -2,6 +2,10 @@
 
 A decentralized platform for independent journalism on a mission to rebuild trust and reverse polarization in media. 
 
+## Hackathon Scope
+
+The demo built during this hackathon is to 
+
 ## Executive Summary
 
 We are building two AI-powered UI features for Aemula, a decentralized independent journalism platform. The two features — **Agentic Editorial Review** and **Ideological Vector Search** — are designed to showcase novel interface patterns where Claude drives the UI logic itself, not just the content. The editorial review transforms the writing-to-publishing workflow into a structural block-editing paradigm orchestrated by AI. The vector search visualizes ideological proximity in 3D space and morphs between contextual and ideological ranking views.

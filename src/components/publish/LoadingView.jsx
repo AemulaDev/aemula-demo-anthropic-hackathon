@@ -5,10 +5,10 @@ import { AiOutlineLoading3Quarters, AiOutlineCheckCircle } from "react-icons/ai"
 export default function LoadingView({ steps = [] }) {
   return (
     <div className="flex flex-col items-center justify-center h-[calc(100vh-64px)] gap-8">
-      <h2 className="font-sans font-semibold text-xl text-stone-100 mb-4">
+      <h2 className="font-sans font-light text-3xl text-stone-100 mb-4">
         Analyzing your article...
       </h2>
-      <div className="flex flex-col gap-4 w-80">
+      <div className="ml-8 flex flex-col gap-4 w-80">
         {steps.map((step, i) => (
           <div key={i} className="flex items-center gap-3">
             {step.status === "done" ? (

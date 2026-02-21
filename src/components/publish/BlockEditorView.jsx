@@ -164,7 +164,7 @@ export default function BlockEditorView({
       </div>
 
       {/* Right column — flags */}
-      <div className="w-80 border-l border-stone-700 overflow-y-auto p-6 flex-shrink-0">
+      <div className="w-125 border-l border-stone-700 overflow-y-auto pt-6 px-6 pb-24 flex-shrink-0">
         <h3 className="font-sans text-xs uppercase tracking-wider text-stone-500 mb-4">
           Review Flags
         </h3>
@@ -186,7 +186,7 @@ export default function BlockEditorView({
       <div className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
         <button
           onClick={onBackToDraft}
-          className="font-sans text-sm px-4 py-2.5 text-stone-400 hover:text-stone-200 border border-stone-600 rounded-md hover:border-stone-500 transition-colors"
+          className="font-sans text-sm px-4 py-2.5 bg-zinc-800 text-stone-400 hover:text-stone-200 border border-stone-600 rounded-md hover:border-stone-500 transition-colors"
         >
           Back to Draft
         </button>

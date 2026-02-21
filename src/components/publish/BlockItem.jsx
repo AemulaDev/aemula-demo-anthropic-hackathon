@@ -9,6 +9,7 @@ import {
   AiOutlineUp,
   AiOutlineClose,
   AiOutlineFlag,
+  AiOutlineCheckCircle,
 } from "react-icons/ai";
 
 export default function BlockItem({
@@ -63,13 +64,14 @@ export default function BlockItem({
         {/* Content */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-sans text-xs text-stone-500 uppercase tracking-wider">
-              {block.id.replace("_", " ")}
-            </span>
-            {flagCount > 0 && (
+            {flagCount > 0 ? (
               <span className="flex items-center gap-1 text-xs font-sans text-amber-400">
                 <AiOutlineFlag className="text-sm" />
                 {flagCount}
+              </span>
+            ) : (
+              <span className="flex items-center justify-center">
+                <AiOutlineCheckCircle className="text-sm text-cyan-500" />
               </span>
             )}
           </div>
